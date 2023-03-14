@@ -1,6 +1,3 @@
-plugins {
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
-}
 
 group = "dev.iwagl"
 version = "0.0.1"

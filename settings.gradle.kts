@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 
             library("logback-classic", "ch.qos.logback:logback-classic:1.2.11")
             library("kotlin-tests",  "org.jetbrains.kotlin:kotlin-test-junit:1.8.0")
+            library("kotlin-serialization", "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
         }
     }
 }

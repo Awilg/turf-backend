@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
 }
 
 allprojects {
@@ -7,5 +8,9 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     }
 }

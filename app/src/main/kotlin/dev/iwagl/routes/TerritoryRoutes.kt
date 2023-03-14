@@ -13,7 +13,7 @@ fun Routing.registerTerritoryRoutes() {
 }
 
 private fun Routing.healthCheck() {
-    get("/") {
+    get("/territory") {
         call.respond("Test - healthCheck!")
     }
 }
