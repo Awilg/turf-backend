@@ -3,6 +3,8 @@ rootProject.name = "turf"
 include("app")
 include("users")
 include("territory")
+include("geojson-importer")
+
 
 dependencyResolutionManagement {
     versionCatalogs {
