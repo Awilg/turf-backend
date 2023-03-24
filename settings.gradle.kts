@@ -18,7 +18,8 @@ dependencyResolutionManagement {
             library("kmongo", "org.litote.kmongo:kmongo:4.8.0")
 
             library("koin-logger", "io.insert-koin:koin-logger-slf4j:3.3.0")
-            library("koin-ktor", "io.insert-koin:koin-ktor:3.3.0")
+            library("koin-core", "io.insert-koin:koin-core:3.3.3")
+            library("koin-ktor", "io.insert-koin:koin-ktor:3.3.1")
 
             library("logback-classic", "ch.qos.logback:logback-classic:1.2.11")
             library("kotlin-tests",  "org.jetbrains.kotlin:kotlin-test-junit:1.8.0")

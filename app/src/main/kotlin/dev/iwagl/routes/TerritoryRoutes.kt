@@ -1,15 +1,17 @@
 package dev.iwagl.routes
 
+import dev.iwagl.territory.data.TerritoryDao
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
 fun Routing.registerTerritoryRoutes() {
     healthCheck()
 
     getTerritoryById()
     getTerritoriesByCity()
-    getTerritoriesByLocation()
+    ListTerritories()
 }
 
 private fun Routing.healthCheck() {
@@ -19,10 +21,13 @@ private fun Routing.healthCheck() {
 }
 
 private fun Routing.getTerritoryById() {
+    val territoryDao by inject<TerritoryDao>()
+
     get("/territory/{id}") {
         val territoryId = call.parameters["id"]
 
-        call.respond("Test - getTerritoryById for $territoryId")
+        val t = territoryDao.load(territoryId!!)
+        call.respond("Test - getTerritoryById for $territoryId: $t")
     }
 }
 
@@ -30,6 +35,15 @@ private fun Routing.getTerritoriesByCity() {
     get("/territory/city/{city_id}") {
         val cityId = call.parameters["id"]
         call.respond("Test - getTerritoriesByCity for $cityId")
+    }
+}
+
+private fun Routing.ListTerritories() {
+    val territoryDao by inject<TerritoryDao>()
+
+    get("/territory/list") {
+        val territories = territoryDao.loadAll()
+        call.respond(territories)
     }
 }
 

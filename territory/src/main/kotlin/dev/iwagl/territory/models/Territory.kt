@@ -1,6 +1,7 @@
 package dev.iwagl.territories.models
 
 import kotlinx.serialization.Serializable
+
 @Serializable
 data class Territory(
     val id: String,

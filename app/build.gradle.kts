@@ -19,8 +19,10 @@ dependencies {
     implementation(libs.ktor.serialization)
     implementation(libs.logback.classic)
 
+    implementation(libs.kmongo)
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger)
+    implementation(project(mapOf("path" to ":territory")))
 
     testImplementation(libs.ktor.tests)
     testImplementation(libs.kotlin.tests)
