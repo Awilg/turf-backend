@@ -9,15 +9,18 @@ import org.koin.logger.slf4jLogger
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.getCollection
 
-val territoryModule = module {
-    val client = KMongo.createClient()
-    val database = client.getDatabase("turf")
-    val territoryCollection = database.getCollection<Territory>()
-
-    single { TerritoryDao(territoryCollection) }
-}
 
 fun Application.configureDependencyInjection() {
+    val territoryModule = module {
+        // TODO: determine based on env
+        val connectionString = environment.config.propertyOrNull("database.prod.url")?.getString() ?: ""
+        val client = KMongo.createClient(connectionString.trim('"'))
+        val database = client.getDatabase("turf")
+        val territoryCollection = database.getCollection<Territory>()
+
+        single { TerritoryDao(territoryCollection) }
+    }
+
     install(Koin) {
         slf4jLogger()
         modules(territoryModule)
