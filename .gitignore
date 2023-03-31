@@ -3,7 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-geojson-importer/src/main/resources/
+!**/src/main/resources/*.geojson
 
 ### STS ###
 .apt_generated

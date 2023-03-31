@@ -33,18 +33,29 @@ fun parseGeoJSON(file: File) {
     features?.forEach {
         feature ->
         if (feature.jsonObject["type"].toString() == "\"Feature\"" && feature.jsonObject.containsKey("geometry")) {
-            val geos = mutableListOf<List<String>>()
             val geometry = feature.jsonObject["geometry"]
-            val polygonCoordinates = mutableListOf<LatLng>()
+            val polygons = mutableListOf<List<LatLng>>()
             geometry?.let {
-                if (geometry.jsonObject["type"].toString() == "\"Polygon\"" && geometry.jsonObject.containsKey("coordinates")) {
-                    val polyCoords = geometry.jsonObject["coordinates"]?.jsonArray?.get(0)?.jsonArray
-                    polyCoords?.forEach { pCord ->
-                        val latty = LatLng(
-                            pCord.jsonArray[1].toString().toDouble(),
-                            pCord.jsonArray[0].toString().toDouble()
-                        )
-                        polygonCoordinates.add(latty)
+
+                val isMultiPolygon = geometry.jsonObject["type"].toString() == "\"MultiPolygon\""
+                val isPolygon = geometry.jsonObject["type"].toString() == "\"Polygon\""
+                if ((isMultiPolygon || isPolygon)  && geometry.jsonObject.containsKey("coordinates")) {
+
+                    val polys = geometry.jsonObject["coordinates"]?.jsonArray
+
+                    polys?.forEach {
+                        val polygonCoordinates = mutableListOf<LatLng>()
+
+                        val polyCoords = if (isMultiPolygon) it.jsonArray[0].jsonArray else it.jsonArray
+                        polyCoords.forEach { pCord ->
+                            val latty = LatLng(
+                                pCord.jsonArray[1].toString().toDouble(),
+                                pCord.jsonArray[0].toString().toDouble()
+                            )
+                            polygonCoordinates.add(latty)
+                        }
+
+                        polygons.add(polygonCoordinates)
                     }
                 }
             }
@@ -52,7 +63,7 @@ fun parseGeoJSON(file: File) {
             val territory = Territory(
                 "sea_" + feature.jsonObject["properties"]!!.jsonObject["OBJECTID"].toString(),
                 feature.jsonObject["properties"]!!.jsonObject["S_HOOD"].toString().trim('"'),
-                polygonCoordinates,
+                polygons,
                 Tier.Common,
                 listOf(Features.Normal)
             )

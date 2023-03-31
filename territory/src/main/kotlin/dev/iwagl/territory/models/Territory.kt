@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class Territory(
     val id: String,
     val name: String,
-    val boundaries: List<LatLng>,
+    val boundaries: List<List<LatLng>>,
     val tier: Tier,
     val features: List<Features>
 )
