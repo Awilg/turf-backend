@@ -1,9 +1,9 @@
 package dev.iwagl.plugins
 
-import io.ktor.server.routing.*
-import io.ktor.server.response.*
+import dev.iwagl.territory.routes.registerTerritoryRoutes
 import io.ktor.server.application.*
-import dev.iwagl.routes.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
     routing {

@@ -8,5 +8,8 @@ plugins {
 dependencies {
     implementation(libs.ktor.core)
     implementation(libs.kmongo)
+    implementation(libs.koin.ktor)
+    implementation(libs.koin.logger)
+    implementation(project(mapOf("path" to ":shared")))
     testImplementation(libs.kotlin.tests)
 }

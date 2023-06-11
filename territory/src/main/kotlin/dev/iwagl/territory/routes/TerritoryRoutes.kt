@@ -1,4 +1,4 @@
-package dev.iwagl.routes
+package dev.iwagl.territory.routes
 
 import dev.iwagl.territory.data.TerritoryDao
 import io.ktor.server.application.*

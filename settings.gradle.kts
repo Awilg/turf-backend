@@ -4,7 +4,8 @@ include("app")
 include("users")
 include("territory")
 include("geojson-importer")
-
+include("migrations")
+include("shared")
 
 dependencyResolutionManagement {
     versionCatalogs {

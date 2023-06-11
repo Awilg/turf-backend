@@ -1,7 +1,7 @@
 package main.kotlin.dev.iwagl
 
+import dev.iwagl.models.LatLng
 import dev.iwagl.territories.models.Features
-import dev.iwagl.territories.models.LatLng
 import dev.iwagl.territories.models.Territory
 import dev.iwagl.territories.models.Tier
 import kotlinx.serialization.json.Json
@@ -24,7 +24,7 @@ fun parseGeoJSON(file: File) {
     val jojo = Json.parseToJsonElement(json)
 
     // Create a client to a MongoDB server running on localhost on port 27017
-    val client = KMongo.createClient()
+    val client = KMongo.createClient("mongodb+srv://admin:B8KuFSKr3NKOzpiM@dev.u9ivllf.mongodb.net/?retryWrites=true&w=majority")
     val database = client.getDatabase("turf")
     val col = database.getCollection<Territory>()
 
@@ -61,15 +61,12 @@ fun parseGeoJSON(file: File) {
             }
 
             val territory = Territory(
-                "sea_" + feature.jsonObject["properties"]!!.jsonObject["OBJECTID"].toString(),
-                feature.jsonObject["properties"]!!.jsonObject["S_HOOD"].toString().trim('"'),
-                polygons,
-                Tier.Common,
-                listOf(Features.Normal)
+                id = "sea_" + feature.jsonObject["properties"]!!.jsonObject["OBJECTID"].toString(),
+                name = feature.jsonObject["properties"]!!.jsonObject["S_HOOD"].toString().trim('"'),
+                boundaries = polygons,
+                tier = Tier.Common,
+                features = listOf(Features.Normal)
             )
-
-            // print out the territory
-            println(territory)
 
             //async now
             col.insertOne(territory)

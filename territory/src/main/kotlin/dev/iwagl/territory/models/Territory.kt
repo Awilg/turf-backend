@@ -1,5 +1,6 @@
 package dev.iwagl.territories.models
 
+import dev.iwagl.models.LatLng
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -8,5 +9,6 @@ data class Territory(
     val name: String,
     val boundaries: List<List<LatLng>>,
     val tier: Tier,
-    val features: List<Features>
+    val features: List<Features>,
+    val simplifiedBoundaries: List<List<LatLng>>? = null
 )
