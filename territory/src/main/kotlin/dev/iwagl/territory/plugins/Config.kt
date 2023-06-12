@@ -12,7 +12,8 @@ import org.litote.kmongo.getCollection
 val territoryModule = module {
     // TODO: determine based on env
     // val connectionString = environment.config.propertyOrNull("database.prod.url")?.getString() ?: ""
-    val client = KMongo.createClient()
+    val connectionString = System.getenv("DATABASE_URL")
+    val client = KMongo.createClient(connectionString)
     val database = client.getDatabase("turf")
     val territoryCollection = database.getCollection<Territory>()
     val claimCollection = database.getCollection<Claim>()
