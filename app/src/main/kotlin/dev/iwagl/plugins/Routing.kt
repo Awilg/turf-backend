@@ -1,6 +1,6 @@
 package dev.iwagl.plugins
 
-import dev.iwagl.territory.routes.registerTerritoryRoutes
+import dev.iwagl.territory.api.routes.registerTerritoryRoutes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*

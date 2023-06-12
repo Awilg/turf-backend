@@ -1,7 +1,10 @@
-package dev.iwagl.territory.routes
+package dev.iwagl.territory.api.routes
 
+import dev.iwagl.territory.api.request.ClaimRequest
 import dev.iwagl.territory.data.TerritoryDao
+import dev.iwagl.territory.service.TerritoryService
 import io.ktor.server.application.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
@@ -11,7 +14,8 @@ fun Routing.registerTerritoryRoutes() {
 
     getTerritoryById()
     getTerritoriesByCity()
-    ListTerritories()
+    captureTerritory()
+    listTerritories()
 }
 
 private fun Routing.healthCheck() {
@@ -38,12 +42,23 @@ private fun Routing.getTerritoriesByCity() {
     }
 }
 
-private fun Routing.ListTerritories() {
+private fun Routing.listTerritories() {
     val territoryDao by inject<TerritoryDao>()
 
     get("/territory/list") {
         val territories = territoryDao.loadAll()
         call.respond(territories)
+    }
+}
+
+private fun Routing.captureTerritory() {
+    val territoryService by inject<TerritoryService>()
+
+    post("/territory/claim") {
+        val request = call.receive<ClaimRequest>()
+        val claim = territoryService.claimTerritory(request)
+
+        call.respond("Test - captureTerritory for ${claim.territoryId}")
     }
 }
 

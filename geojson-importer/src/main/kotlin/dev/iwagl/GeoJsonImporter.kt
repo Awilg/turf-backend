@@ -2,7 +2,7 @@ package main.kotlin.dev.iwagl
 
 import dev.iwagl.models.LatLng
 import dev.iwagl.territories.models.Features
-import dev.iwagl.territories.models.Territory
+import dev.iwagl.territory.data.models.Territory
 import dev.iwagl.territories.models.Tier
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray

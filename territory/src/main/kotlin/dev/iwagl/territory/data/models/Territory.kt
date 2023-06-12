@@ -1,6 +1,8 @@
-package dev.iwagl.territories.models
+package dev.iwagl.territory.data.models
 
 import dev.iwagl.models.LatLng
+import dev.iwagl.territories.models.Features
+import dev.iwagl.territories.models.Tier
 import kotlinx.serialization.Serializable
 
 @Serializable
