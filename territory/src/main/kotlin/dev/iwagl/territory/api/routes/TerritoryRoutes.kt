@@ -1,6 +1,7 @@
 package dev.iwagl.territory.api.routes
 
 import dev.iwagl.territory.api.request.ClaimRequest
+import dev.iwagl.territory.data.ClaimDao
 import dev.iwagl.territory.data.TerritoryDao
 import dev.iwagl.territory.service.TerritoryService
 import io.ktor.server.application.*
@@ -16,6 +17,7 @@ fun Routing.registerTerritoryRoutes() {
     getTerritoriesByCity()
     captureTerritory()
     listTerritories()
+    listClaims()
 }
 
 private fun Routing.healthCheck() {
@@ -59,6 +61,15 @@ private fun Routing.captureTerritory() {
         val claim = territoryService.claimTerritory(request)
 
         call.respond("Test - captureTerritory for ${claim.territoryId}")
+    }
+}
+
+private fun Routing.listClaims() {
+    val claimDao by inject<ClaimDao>()
+
+    get("/territory/claim/list") {
+        val claims = claimDao.loadAll()
+        call.respond(claims)
     }
 }
 
