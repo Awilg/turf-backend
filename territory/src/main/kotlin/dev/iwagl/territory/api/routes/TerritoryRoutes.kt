@@ -5,16 +5,22 @@ import dev.iwagl.territory.api.toClaimResponse
 import dev.iwagl.territory.data.ClaimDao
 import dev.iwagl.territory.data.TerritoryDao
 import dev.iwagl.territory.service.TerritoryService
+import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.cachingheaders.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
 fun Routing.registerTerritoryRoutes() {
+    install(CachingHeaders) {
+        options { call, content -> CachingOptions(CacheControl.NoCache(CacheControl.Visibility.Private)) }
+    }
     healthCheck()
 
-    getTerritoryById()
+    //getTerritoryById()
     getTerritoriesByCity()
     captureTerritory()
     listTerritories()

@@ -11,6 +11,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             library("ktor-core", "io.ktor:ktor-server-core-jvm:2.2.2")
+            library("ktor-cacheheaders", "io.ktor:ktor-server-caching-headers:2.2.2")
             library("ktor-contentnegotiation", "io.ktor:ktor-server-content-negotiation-jvm:2.2.2")
             library("ktor-serialization", "io.ktor:ktor-serialization-kotlinx-json-jvm:2.2.2")
             library("ktor-server", "io.ktor:ktor-server-netty-jvm:2.2.2")
