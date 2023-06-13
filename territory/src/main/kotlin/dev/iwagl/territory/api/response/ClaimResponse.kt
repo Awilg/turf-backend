@@ -1,9 +1,9 @@
-package dev.iwagl.territory.api.request
+package dev.iwagl.territory.api.response
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ClaimRequest(
+data class ClaimResponse(
     val territoryId: String,
     val playerId: String,
     val teamId: String,

@@ -1,6 +1,7 @@
 package dev.iwagl.territory.api.routes
 
 import dev.iwagl.territory.api.request.ClaimRequest
+import dev.iwagl.territory.api.toClaimResponse
 import dev.iwagl.territory.data.ClaimDao
 import dev.iwagl.territory.data.TerritoryDao
 import dev.iwagl.territory.service.TerritoryService
@@ -60,7 +61,7 @@ private fun Routing.captureTerritory() {
         val request = call.receive<ClaimRequest>()
         val claim = territoryService.claimTerritory(request)
 
-        call.respond("Test - captureTerritory for ${claim.territoryId}")
+        call.respond(claim.toClaimResponse())
     }
 }
 

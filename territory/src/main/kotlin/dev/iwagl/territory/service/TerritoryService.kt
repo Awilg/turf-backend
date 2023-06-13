@@ -5,6 +5,7 @@ import dev.iwagl.territory.api.request.ClaimRequest
 import dev.iwagl.territory.data.ClaimDao
 import dev.iwagl.territory.data.TerritoryDao
 import io.ktor.util.date.*
+import java.util.*
 
 class TerritoryService(
     private val territoryDao: TerritoryDao,
@@ -24,7 +25,7 @@ class TerritoryService(
             playerId = request.playerId,
             teamId = request.teamId,
             timestamp = getTimeMillis(),
-            gameId = request.gameId
+            gameId = Random().nextInt(1000).toString()
         )
 
         claimDao.save(claim)
