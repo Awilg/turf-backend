@@ -7,10 +7,13 @@ include("game")
 include("geojson-importer")
 include("migrations")
 include("shared")
+include("brokie")
 
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
+            library("aws-sdk", "aws.sdk.kotlin:s3:0.25.0-beta")
+
             library("ktor-core", "io.ktor:ktor-server-core-jvm:2.2.2")
             library("ktor-cacheheaders", "io.ktor:ktor-server-caching-headers:2.2.2")
             library("ktor-contentnegotiation", "io.ktor:ktor-server-content-negotiation-jvm:2.2.2")
