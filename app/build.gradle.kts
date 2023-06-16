@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger)
     implementation(project(mapOf("path" to ":territory")))
+    implementation(project(mapOf("path" to ":game")))
 
     testImplementation(libs.ktor.tests)
     testImplementation(libs.kotlin.tests)

@@ -1,5 +1,6 @@
 package dev.iwagl.plugins
 
+import dev.iwagl.game.api.routes.registerGameRoutes
 import dev.iwagl.territory.api.routes.registerTerritoryRoutes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -12,5 +13,6 @@ fun Application.configureRouting() {
         }
 
         registerTerritoryRoutes()
+        registerGameRoutes()
     }
 }

@@ -3,6 +3,7 @@ rootProject.name = "turf"
 include("app")
 include("users")
 include("territory")
+include("game")
 include("geojson-importer")
 include("migrations")
 include("shared")
