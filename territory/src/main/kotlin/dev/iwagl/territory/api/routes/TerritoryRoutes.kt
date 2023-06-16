@@ -25,6 +25,7 @@ fun Routing.registerTerritoryRoutes() {
     captureTerritory()
     listTerritories()
     listClaims()
+    listClaimsByTerritoryAndGame()
 }
 
 private fun Routing.healthCheck() {
@@ -76,6 +77,23 @@ private fun Routing.listClaims() {
 
     get("/territory/claim/list") {
         val claims = claimDao.loadAll()
+        call.respond(claims)
+    }
+}
+
+private fun Routing.listClaimsByTerritoryAndGame() {
+    val claimDao by inject<ClaimDao>()
+
+    get("/territory/claim") {
+        val territoryId = call.parameters["territoryId"]
+        val gameId = call.parameters["gameId"]
+
+        if (territoryId == null || gameId == null) {
+            call.respond(HttpStatusCode.BadRequest, "Missing territoryId or gameId")
+            return@get
+        }
+
+        val claims = claimDao.loadByTerritoryIdAndGameId(territoryId, gameId)
         call.respond(claims)
     }
 }

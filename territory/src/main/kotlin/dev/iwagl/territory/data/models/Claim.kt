@@ -1,4 +1,4 @@
-package dev.iwagl.territories.models
+package dev.iwagl.territory.data.models
 
 import kotlinx.serialization.Serializable
 

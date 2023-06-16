@@ -1,6 +1,6 @@
 package dev.iwagl.territory.api
 
-import dev.iwagl.territories.models.Claim
+import dev.iwagl.territory.data.models.Claim
 import dev.iwagl.territory.api.response.ClaimResponse
 
 // function that maps a Claim to a ClaimResponse

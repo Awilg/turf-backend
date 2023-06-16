@@ -1,6 +1,6 @@
 package dev.iwagl.territory.service
 
-import dev.iwagl.territories.models.Claim
+import dev.iwagl.territory.data.models.Claim
 import dev.iwagl.territory.api.request.ClaimRequest
 import dev.iwagl.territory.data.ClaimDao
 import dev.iwagl.territory.data.TerritoryDao
